@@ -1,0 +1,17 @@
+.search th{
+    @apply p-2 bg-slate-500 rounded-lg;
+} 
+
+.search input{
+    @apply rounded-lg border-spacing-1 hover:bg-white w-32 text-sm h-6; 
+}
+
+.search select{
+    @apply rounded-lg h-6 w-52;
+}
+
+.headers th{
+    @apply bg-slate-500 rounded-lg p-1 text-center text-sm;
+}
+
+
