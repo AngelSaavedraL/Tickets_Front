@@ -1,0 +1,44 @@
+.search th{
+    @apply p-2 bg-gray-900 text-white  h-5;
+} 
+
+.search input{
+    @apply rounded-lg border-spacing-1 text-black  w-32 text-sm font-normal h-6; 
+}
+
+.search select{
+    @apply rounded-lg h-6 w-52 text-black font-normal font-sans;
+}
+
+.headers th{
+    @apply bg-gray-900 text-white  p-1 text-center text-sm ;
+}
+
+.headers {
+    @apply h-4 ; 
+}
+
+#ticketsContainer tr{
+    @apply p-2;
+}
+
+#ticketsContainer td{
+    @apply h-28 w-24 ;
+}
+
+
+.table-container {
+    @apply relative overflow-x-auto rounded-lg overflow-y-auto mt-9 h-auto w-5/6 flex justify-center;
+}
+
+.table{
+    @apply mt-20 shadow-2xl mb-20;
+}
+
+.celda {
+    @apply h-16 w-32 overflow-auto pt-4;
+}
+
+.action_buttons {
+    @apply w-10 h-10;
+}

@@ -1,16 +1,15 @@
 import React, {useData} from 'react'; 
 import { replace, useNavigate } from 'react-router-dom';
-import render from '../../tickets/components/Table';
-// import tickets from '/tickets';
+import '../styles/Login.css';
 
 
 
-export default function Login() {
+export  function Login() {
 
     const navigate  = useNavigate();
 
     const signedIn = () => {
-        navigate('/table', {
+        navigate('/', {
             replace:true
         });
     } 
@@ -45,18 +44,32 @@ export default function Login() {
     }
 
     return (
-        <div id='login_container' className='border rounded-2xl p-5 shadow-lg shadow-slate-400 center h-96 w-96 space-y-8 bg-gray-800'>
-            <h4 className='m-4 text-xl text-center'>Inicio de Sesion:</h4>
-            <form className='space-y-3 grid' >
-                <label htmlFor="nro_nomina left">ID: </label>
-                <input className='border ' id="nro_nomina"  placeholder=' Nro de Nomina' required/>
-                <label htmlFor="password">Password: </label>
-                <input className='border ' id="password"  type="password" placeholder=' Password'  required />
-                <button className='mt-1' onClick={verifyUser}>
-					Login
-                </button>
-            </form>
+        <div>
+
+            <div className='flex justify-center mt-48 mb-14'>
+                <div id='login_container' className='login_container '>
+                    <h4 className='m-4 text-xl text-center text-white font-medium'>Inicio de Sesion</h4>
+                    <form className=' form_login' >
+                        <div className='flex flex-col '>
+                            <label htmlFor="nro_nomina left">ID: </label>
+                            <input className='border ' id="nro_nomina"  placeholder=' Nro de Nomina' required/>
+                            <label htmlFor="password">Password: </label>
+                            <input className='border ' id="password"  type="password" placeholder=' Password'  required />
+
+                            
+                        </div>
+
+                        <div className='justify-center '>
+                            <button className='btnLogin' onClick={verifyUser}>
+                                <div className='flex justify-center'> Log In </div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
+        
     );
 }
 
