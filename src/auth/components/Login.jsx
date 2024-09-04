@@ -9,7 +9,7 @@ export  function Login() {
     const navigate  = useNavigate();
 
     const signedIn = () => {
-        navigate('/', {
+        navigate('/tickets', {
             replace:true
         });
     } 
