@@ -1,0 +1,7 @@
+1. Put all the requests on the services folder
+2. use the env variable for the api url 
+3. put id instead of url in the array of dependencies for the requests  
+4. Create pages using more than one component, example: TablePage, this page will have the table component + the pagination component,
+    both, the table component and the pagination component will use another component inside them, the button component 
+5. 
+

@@ -1,5 +1,5 @@
 .form-ticket input{
-    @apply border border-blue-300 w-72 rounded-lg mb-3;
+    @apply border mb-6 border-blue-300 w-72 rounded-lg 
 }
 
 .form-ticket textarea{
@@ -15,9 +15,13 @@
 }
 
 #file_request {
-    @apply mt-10 border border-blue-300;
+    @apply  mb-2 border border-blue-300;
 }
 
-.form-ticket label{
-    @apply mt-5;
+.smlabel {
+    @apply mt-3 mb-2
+}
+
+.down{
+    @apply mt-8 mb-3
 }

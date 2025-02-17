@@ -1,0 +1,25 @@
+
+// QUERY TO GET THE ID OF THE COACHES SEPARATED BY , 
+
+SELECT CAST( GROUP_CONCAT( id
+SEPARATOR ',' ) AS CHAR ) AS DATA
+FROM USUARIO_CLIENTE
+WHERE `IdGrupo_sistema` =150
+LIMIT 0 , 30
+
+//
+
+
+// QUERY TO COUNT THE SELLS AND THE DENIED SELLS, BUT COUNTING THE DENIED SELLS WITH A CERTAIN SUB_STATUS AS A SELL
+
+SELECT 
+    CASE 
+        WHEN idEstatusVenta = 1 THEN 'Aproved'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 1 THEN 'possible sell op1'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 2 THEN 'possible sell op2'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 4 THEN 'possible sell op3' 
+        ELSE 'Denied'
+    END AS order_status,
+    COUNT(*) AS total_records
+FROM VENTAS_PLATACARD_VAL
+GROUP BY order_status

@@ -1,10 +1,10 @@
 import React, {useData} from 'react'; 
 import { replace, useNavigate } from 'react-router-dom';
-import '../styles/Login.css';
+import '../Login/Login.css';
 
 
 
-export  function Login() {
+export function Login() {
 
     const navigate  = useNavigate();
 

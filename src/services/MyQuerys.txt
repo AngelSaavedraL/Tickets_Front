@@ -1,0 +1,116 @@
+/* Hector's query for the reported
+SELECT 
+    UC.IdSupervisor AS idcoach, 
+    UCC.Nombre AS Coach,
+    SUM(CASE WHEN VP.idEstatusVenta =1 THEN 1 ELSE 0 END ) AS aprobada, 
+    SUM( CASE WHEN VP.idEstatusVenta =2 THEN 1 ELSE 0 END ) AS rechazada, 
+    SUM( CASE WHEN VP.idEstatusVenta =4 THEN 1 ELSE 0 END ) AS pendiente  FROM VENTAS_PLATACARD_VAL AS VP 
+        INNER JOIN USUARIO_CLIENTE AS UC ON UC.Id = VP.idUsuarioCapturo 
+        INNER JOIN USUARIO_CLIENTE AS UCC ON UCC.Id = UC.IdSupervisor 
+    WHERE VP.Estado = 1 
+    AND (VP.fechaCapturo >= '11-10-2024' AND VP.fechaCapturo <= '11-10-2024') 
+    AND UC.IdSupervisor IN  ".$iduserclient." 
+    
+    SELECT id  AS DATA FROM USUARIO_CLIENTE where `IdGrupo_sistema` = 150
+    
+    SELECT GROUP_CONCAT (id SEPARATOR ',')  AS DATA FROM USUARIO_CLIENTE where `IdGrupo_sistema` = 150
+
+/* Query to get the dn's with succesed status
+
+SELECT GROUP_CONCAT( telefono ) AS DNS
+FROM VENTAS_PLATACARD_VAL
+WHERE idEstatusVenta =1
+AND horaCapturo > '15:00:00'
+AND fechaCapturo = '2024-10-11'
+AND Estado =1
+LIMIT 0 , 30
+
+
+
+// Another Hector's query for get the amount of process, sell, and denied sells.
+
+SELECT UC.IdSupervisor AS idcoach, UCC.Nombre AS Coach,SUM(CASE WHEN VP.idEstatusVenta =1 THEN 1 ELSE 0 END ) AS aprobada, 
+    SUM( CASE WHEN VP.idEstatusVenta =2 THEN 1 ELSE 0 END ) AS rechazada, 
+    SUM( CASE WHEN VP.idEstatusVenta =4 THEN 1 ELSE 0 END ) AS pendiente  FROM VENTAS_PLATACARD_VAL AS VP 
+        INNER JOIN USUARIO_CLIENTE AS UC ON UC.Id = VP.idUsuarioCapturo 
+        INNER JOIN USUARIO_CLIENTE AS UCC ON UCC.Id = UC.IdSupervisor 
+    WHERE VP.Estado = 1 AND (VP.fechaCapturo >= '".$fecha_i."' AND VP.fechaCapturo <= '".$fecha_f."') AND UC.IdSupervisor = '".$iduserclient."'
+
+*/
+
+
+
+// Query using case statement for count the denied sells and the sells, counting as sell a denied sell but with a certain sub-status 
+
+
+
+// QUERY TO GET THE ID OF THE COACHES SEPARATED BY , 
+
+SELECT CAST( GROUP_CONCAT( id
+SEPARATOR ',' ) AS CHAR ) AS DATA
+FROM USUARIO_CLIENTE
+WHERE `IdGrupo_sistema` =150
+LIMIT 0 , 30
+
+//
+
+
+// QUERY TO COUNT THE SELLS AND THE DENIED SELLS, BUT COUNTING THE DENIED SELLS WITH A CERTAIN SUB_STATUS AS A SELL
+
+SELECT 
+    CASE 
+        WHEN idEstatusVenta = 1 THEN 'Aprobadas'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 1 THEN 'possible sell op1'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 2 THEN 'possible sell op2'
+        WHEN idEstatusVenta = 2 AND idSubEstatusVenta = 4 THEN 'possible sell op3' 
+        ELSE 'Rechazadas'
+    END AS order_status,
+    COUNT(*) AS total_records
+FROM VENTAS_PLATACARD_VAL
+GROUP BY order_status
+
+// QUERY TO GET THE LADA BUT WITHOUT REPEAT ONE OF THEM
+
+
+SELECT DISTINCT SUBSTRING(telefono, 1, 3) AS lada 
+FROM VENTAS_PLATACARD_VAL
+WHERE fechaCapturo > '2024-07-31'
+AND fechaCapturo < '2024-09-01'
+AND idEstatusVenta =1
+AND Estado =1
+
+
+
+
+/////////////////////////
+
+
+
+CORONA SALVADOR MARTIN 21832
+LOPEZ DE LA VEGA MARIA DEL CARMEN 21878 
+LUNA HUERTA HUGO BRANDON 21889
+SERRANO MENDOZA ERNESTO 21888
+IBARRA VAZQUEZ MARIO GERARDO 13710
+ZARAZUA TRUJILLO MARIA FERNANDA 21886
+BERNAL SANCHEZ SANDRA XIMENA 21887
+ABASCAL ORTIZ MARIA MAGDALENA 21890 
+KRAYEVSKY CEPEDA YERIK GAULTIER 21884 
+
+
+
+
+update asterisk.vicidial_users set user_group = 'PLATA_2' 
+where user in ('21214','21800','16085','14259','14258','21074','20888','21793','21418','21829','21831','21900','21899','21904')
+
+EN EL 3.9 Y EN EL 3.5
+
+
+// select to get all the ladas called since september 15
+SELECT DISTINCT SUBSTRING( telefono, 1, 3 ) AS lada
+FROM VENTAS_PLATACARD_VAL
+WHERE idEstatusVenta =1
+AND Estado =1
+AND fechaCapturo > '2024-09-15'
+ORDER BY lada ASC
+LIMIT 0 , 30
+
